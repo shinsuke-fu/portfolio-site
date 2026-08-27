@@ -102,7 +102,7 @@ export default async function AboutPage() {
           <div className="flex flex-col gap-3">
             <p className="text-sm font-semibold">実務使用経験</p>
             <p className="text-xs leading-relaxed text-muted">
-              いずれも現場で必要に迫られて身につけてきたもので、項目によって習熟度には差があります。
+              現場で必要に応じて身につけてきたものもあるため、項目によって習熟度には差があります。
             </p>
             <div className="flex flex-wrap gap-2">
               {CAREER_SKILLS.map((name) => (
