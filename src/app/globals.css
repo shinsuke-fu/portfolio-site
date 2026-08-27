@@ -1,0 +1,180 @@
+@import "tailwindcss";
+
+/* クリーム × マットな配色トークン（ライト） */
+:root {
+  --background: #f7f2e8;
+  --foreground: #2b241c;
+  --muted: #5c5346;
+  --border: #e6ddc9;
+  --surface: #fbf8f1;
+  --accent: #8a4a2f;
+  --accent-foreground: #f7f2e8;
+
+  /* 技術カテゴリ別バッジの配色（TechBadge用） */
+  --badge-frontend-bg: #f0dcc8;
+  --badge-frontend-fg: #8a4a2f;
+  --badge-tools-bg: #e3e0c6;
+  --badge-tools-fg: #6e6b3f;
+  --badge-infrastructure-bg: #ede0c0;
+  --badge-infrastructure-fg: #9c7a2e;
+  --badge-backend-bg: #dce5de;
+  --badge-backend-fg: #3f6b54;
+  --badge-database-bg: #e6dce0;
+  --badge-database-fg: #7a4a5c;
+  --badge-other-bg: #e6ddc9;
+  --badge-other-fg: #5c5346;
+
+  /* サムネイル画像がまだ無い間のプレースホルダー配色 */
+  --thumbnail-bg: #e9dfc8;
+  --thumbnail-fg: #a8987a;
+}
+
+/* ダーク（next-themesが <html class="dark"> を付与する想定） */
+.dark {
+  --background: #211b14;
+  --foreground: #f3ebdd;
+  --muted: #b8ac97;
+  --border: #3a2f22;
+  --surface: #2a231a;
+  --accent: #d98f5f;
+  --accent-foreground: #211b14;
+
+  --badge-frontend-bg: #3b2a1d;
+  --badge-frontend-fg: #e3a97b;
+  --badge-tools-bg: #2e2e1d;
+  --badge-tools-fg: #c7c48a;
+  --badge-infrastructure-bg: #3a2e14;
+  --badge-infrastructure-fg: #d9b463;
+  --badge-backend-bg: #1e2e24;
+  --badge-backend-fg: #7fbf9d;
+  --badge-database-bg: #2e2028;
+  --badge-database-fg: #c98ca8;
+  --badge-other-bg: #3a2f22;
+  --badge-other-fg: #b8ac97;
+
+  --thumbnail-bg: #3a2f22;
+  --thumbnail-fg: #8c8067;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-surface: var(--surface);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-badge-frontend-bg: var(--badge-frontend-bg);
+  --color-badge-frontend-fg: var(--badge-frontend-fg);
+  --color-badge-tools-bg: var(--badge-tools-bg);
+  --color-badge-tools-fg: var(--badge-tools-fg);
+  --color-badge-infrastructure-bg: var(--badge-infrastructure-bg);
+  --color-badge-infrastructure-fg: var(--badge-infrastructure-fg);
+  --color-badge-backend-bg: var(--badge-backend-bg);
+  --color-badge-backend-fg: var(--badge-backend-fg);
+  --color-badge-database-bg: var(--badge-database-bg);
+  --color-badge-database-fg: var(--badge-database-fg);
+  --color-badge-other-bg: var(--badge-other-bg);
+  --color-badge-other-fg: var(--badge-other-fg);
+
+  --color-thumbnail-bg: var(--thumbnail-bg);
+  --color-thumbnail-fg: var(--thumbnail-fg);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+}
+
+/* リンク・ボタン類は必ずポインターカーソルにする。
+   <a href="..."> はブラウザ標準で既にポインターになるが、
+   <button> はブラウザ標準だと矢印カーソルのままなので明示的に指定する。 */
+a[href],
+button:not(:disabled),
+[role="button"] {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+/* ダーク/ライト切り替え時に、背景色・文字色・枠線がふわっと変化するアニメーション。
+   色に関係するプロパティだけに絞ることで、レイアウトのガタつきを避けている。
+   @layer base に入れているのは、Tailwindのtransition-*ユーティリティ（例: transition-all）を
+   個別の要素に指定したときに、そちらを優先して上書きできるようにするため。
+   CSSのカスケードレイヤーの仕組み上、レイヤーの外に書いたルールは指定の強さ（詳細度）に関係なく
+   常にレイヤー内のルール（Tailwindのユーティリティなど）より優先されてしまう。そのため、
+   このルールをレイヤーの外に書いたままだと、他の場所でtransition-allなどを指定しても
+   常にこのルール（色関連のプロパティだけ）に上書きされてしまい、意図した動き（フェードインなど）が
+   何も起きないように見えてしまう、という不具合があった。 */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-duration: 300ms;
+    transition-timing-function: ease;
+  }
+}
+
+/* 「動きを減らす」設定をしている人には、アニメーションなしで即切り替える */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0ms !important;
+  }
+}
+
+/* 隠しコマンド（K → M）でロゴの「F」がふくらみながら回転し、縮んで戻る演出 */
+@keyframes logo-flip {
+  0% {
+    transform: scale(1) rotateY(0deg);
+  }
+  45% {
+    transform: scale(1.7) rotateY(200deg);
+  }
+  75% {
+    transform: scale(1.7) rotateY(360deg);
+  }
+  100% {
+    transform: scale(1) rotateY(360deg);
+  }
+}
+
+.animate-logo-flip {
+  animation: logo-flip 0.9s ease;
+}
+
+/* クリーム系マットな配色に、ごく薄いグレイン（ノイズ）テクスチャを重ねる。
+   画面全体を覆う操作不可のレイヤーとして、blendモードで馴染ませている。 */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  opacity: 0.18;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* 作品カードのホバー時に、カーソルの位置に応じて360度どの方向にも傾く演出。
+   実際の回転角度はJavaScript側（ProjectCard.tsx）でカーソル位置から計算してinline styleで
+   直接指定している。ここでは「傾いた状態からどう戻るか」の基本のtransitionと、
+   ブラウザにレイヤー合成を先読みさせるwill-changeだけを定義している。 */
+.card-tilt {
+  will-change: transform;
+  transition: transform 400ms ease, border-color 300ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-logo-flip {
+    animation: none;
+  }
+}
