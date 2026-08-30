@@ -45,8 +45,8 @@ export default async function Home() {
             つくりながら学び、拡張し続けるエンジニア。
           </h1>
           <p className="max-w-xl text-sm leading-relaxed text-muted sm:text-base">
-            React / TypeScript を軸にフロントエンドを構築しながら、Supabase
-            を使ったバックエンド実装にも取り組んできました。将来的にはフルスタックエンジニアとして、扱える領域を少しずつ広げていきたいと考えています。
+            React / TypeScript
+            を軸にフロントエンドを構築しながら、AIを活用した開発で扱える領域を少しずつ広げています。実装の多くはAIの力を借りつつ、設計判断や「なぜこのコードで動くのか」を理解し、最終的な良し悪しを判断するところは、自分の役割として持ち続けたいと思っています。
           </p>
           <div className="mt-1 flex flex-col gap-3 sm:flex-row">
             <Link

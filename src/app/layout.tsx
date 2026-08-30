@@ -19,7 +19,7 @@ const workSans = Work_Sans({
 });
 
 const siteDescription =
-  "フロントエンドを中心に、技術的な現在地と成長プロセスを記録するポートフォリオサイトです。";
+  "AIを活用した開発を軸に、技術的な現在地と成長プロセスを記録するポートフォリオサイトです。";
 
 export const metadata: Metadata = {
   // URL系のmetadataフィールド（openGraph.imagesなど）を相対パスで書けるようにするための基準URL。
