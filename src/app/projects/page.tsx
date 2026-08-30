@@ -24,7 +24,7 @@ export default async function ProjectsPage() {
           </p>
           <h1 className="font-display text-3xl font-semibold sm:text-4xl">作品一覧</h1>
           <p className="max-w-xl text-sm leading-relaxed text-muted sm:text-base">
-            これまでに手を動かして作った作品をまとめています。カテゴリで絞り込んで見ることもできます。
+            これまでに作った作品をまとめています。カテゴリで絞り込んで見ることもできます。
           </p>
         </Container>
       </FadeInSection>
