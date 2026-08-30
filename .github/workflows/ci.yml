@@ -1,0 +1,33 @@
+# push / PRのたびに「lint → build」を自動実行するCI設定。
+#
+# このクラウド作業環境（Claude Cowork）はGoogle Fontsに到達できないため、コード変更のたびに
+# layout.tsxを一時的にフォント無しスタブへ差し替えてビルド確認している（CLAUDE.md参照）。
+# GitHub Actions側は実際のGoogle Fontsへ到達できるので、pushしたブランチで「本物のフォント込みで
+# 本当にビルドが通るか」を検証できる、このプロジェクトで唯一の場所として機能する。
+# 全部green（成功）ならREADMEのバッジも緑になる。
+#
+# 【今後の調整ポイント】
+# - まだテストを導入していないため npm run test の行は入れていない。導入したら追加する（TODO.md参照）
+# - node-version：package.jsonの@types/node（現在^20）やNext.jsの要求バージョンに合わせて見直す
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
