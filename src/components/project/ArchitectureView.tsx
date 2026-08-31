@@ -38,6 +38,27 @@ export function ArchitectureView({ project }: { project: Project }) {
           <p key={note}>{note}</p>
         ))}
       </div>
+
+      {(project.aiUsageNote || project.ownJudgmentNote) && (
+        <div className="flex flex-col gap-4 border-t border-border pt-6">
+          {project.aiUsageNote && (
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wide text-muted">
+                AIをどう活用したか
+              </p>
+              <p className="mt-1 text-sm leading-relaxed text-muted">{project.aiUsageNote}</p>
+            </div>
+          )}
+          {project.ownJudgmentNote && (
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wide text-muted">
+                自分で判断した点
+              </p>
+              <p className="mt-1 text-sm leading-relaxed text-muted">{project.ownJudgmentNote}</p>
+            </div>
+          )}
+        </div>
+      )}
     </Container>
   );
 }

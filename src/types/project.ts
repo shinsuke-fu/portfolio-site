@@ -36,6 +36,8 @@ export interface Project {
   // 深掘り・技術的アピール要素
   architectureDiagram?: string; // アーキテクチャ構成図の画像URL
   architectureNotes?: string[]; // 構成・技術選定の理由（段落ごとに配列で持つ）
+  aiUsageNote?: string; // 開発でAIをどう活用したか（「構成・技術選定の理由」セクションに表示）
+  ownJudgmentNote?: string; // 技術選定・設計・修正判断のうち、自分で行ったこと（同上）
   challenges: ChallengeAndLearning[]; // 技術的ハードルと解決プロセス
 
   createdAt: string; // 作成年月（YYYY-MM）
