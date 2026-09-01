@@ -38,12 +38,27 @@ const CAREER_SKILLS = [
 const SITE_LEARNING_TECH = ["Next.js (App Router)", "Server Components", "Tailwind CSS v4", "Claude Codeでの開発"];
 
 const CAREER_HISTORY = [
-  "熊本にて広告制作会社で編集ディレクターとしてキャリアをスタート",
-  "上京し、未経験からIT業界へ",
-  "研修と並行した異業種の経験を経て、SESエンジニアとしてOracle PL/SQL・HTML/CSS/JSPなどの案件に従事",
-  "Web制作会社にてWeb／ECサイト運用のディレクター・アシスタントとして複数プロジェクトを担当",
-  "現在はIT企業にて基幹システム開発・ECサイト運用を担当（kintone, WordPress, JavaScript, Python自動化, 生成AI活用）",
-  "個人開発：AIを活用した開発でReact/TypeScriptに取り組み、WORK PLUSを開発・公開",
+  {
+    period: "2016/4〜2019/8",
+    text: "熊本にて広告制作会社で編集ディレクターとしてキャリアをスタート",
+  },
+  { period: "2019/10〜", text: "上京し、未経験からIT業界へ" },
+  {
+    period: "2019/11〜2022/9",
+    text: "研修と並行した異業種の経験を経て、SESエンジニアとしてOracle PL/SQL・HTML/CSS/JSPなどの案件に従事",
+  },
+  {
+    period: "2022/10〜2024/10",
+    text: "Web制作会社にてWeb／ECサイト運用のディレクター・アシスタントとして複数プロジェクトを担当",
+  },
+  {
+    period: "2024/11〜現在",
+    text: "IT企業にて基幹システム開発・ECサイト運用を担当（kintone, WordPress, JavaScript, Python自動化, 生成AI活用）",
+  },
+  {
+    period: "2026/8〜",
+    text: "個人開発：AIを活用した開発でReact/TypeScriptに取り組み、WORK PLUSを開発・公開",
+  },
 ];
 
 export default async function AboutPage() {
@@ -69,10 +84,13 @@ export default async function AboutPage() {
       <FadeInSection>
         <Container className="flex flex-col gap-5 pb-16">
           <p className="text-sm leading-relaxed text-muted sm:text-base">
-            熊本で広告制作会社の編集ディレクターとしてキャリアをスタートし、原稿作成や校正、進行管理を担当しました。その後上京し、未経験からIT業界に飛び込みました。研修カリキュラムと並行して異業種の仕事も経験しながら基礎を身につけ、SES・Web運用ディレクター・基幹システム開発と、性質の異なる複数の現場を渡り歩いてきました。決して平坦な道のりではありませんでしたが、その都度求められる技術や役割に合わせて対応し、実務で形にしてきました。専門性を突き詰めてきたというより、新しい環境に合わせて必要なことを身につけていくタイプだと思っています。
+            熊本の広告制作会社で編集ディレクターとしてキャリアをスタートし、原稿作成や校正、進行管理を担当したのち、未経験からIT業界へ飛び込みました。入社当初は営業事務や店舗業務など異業種の現場で働きながら、研修や独学でITの基礎技術を習得。その後、SES、Web運用ディレクション、基幹システム開発と、環境や役割が異なる複数の現場で経験を重ねてきました。特定の専門性にこだわるのではなく、置かれた環境で求められる知識やスキルを素早く身につけ、実務で形にしていく対応力を強みとしています。
           </p>
           <p className="text-sm leading-relaxed text-muted sm:text-base">
-            現在はIT企業で基幹システム開発とECサイト運用を担当し、kintoneやJavaScript、Python（Selenium）による業務自動化に携わっています。現場では生成AIを活用した開発フローも取り入れていますが、AIの力を借りるだけでなく「なぜそう動くのか」を自分の理解として積み上げていくことを、今の課題として意識しています。このポートフォリオサイトは、そうした業務外の時間で独学したReact/TypeScriptの学習成果と、AIとどう向き合いながら技術を身につけていくかという試行錯誤そのものを記録する場所として作っています。
+            現在は、基幹システム開発とECサイト運用を担当しながら、kintone、JavaScript、Python（Selenium）を活用した業務自動化に取り組んでいます。現場では生成AIを取り入れた開発を行っていますが、ただAIに頼るだけでなく「なぜそのコードで動くのか」という背景や仕組みを理解し、自分の知識として積み上げていくことを意識しています。
+          </p>
+          <p className="text-sm leading-relaxed text-muted sm:text-base">
+            このポートフォリオサイトは、独学で取り組んだReact/TypeScriptの学習成果であると同時に、AIと向き合いながらどのように技術を習得していくかという試行錯誤のプロセスを記録する場所として作成しました。
           </p>
         </Container>
       </FadeInSection>
@@ -84,10 +102,11 @@ export default async function AboutPage() {
           <ul className="flex flex-col gap-4 border-l-2 border-border pl-6">
             {CAREER_HISTORY.map((item) => (
               <li
-                key={item}
-                className="relative text-sm leading-relaxed text-muted before:absolute before:-left-[29px] before:top-1.5 before:h-2 before:w-2 before:rounded-full before:bg-accent sm:text-base"
+                key={item.text}
+                className="relative before:absolute before:-left-[29px] before:top-1.5 before:h-2 before:w-2 before:rounded-full before:bg-accent"
               >
-                {item}
+                <p className="text-xs font-semibold text-accent">{item.period}</p>
+                <p className="mt-1 text-sm leading-relaxed text-muted sm:text-base">{item.text}</p>
               </li>
             ))}
           </ul>
@@ -118,13 +137,15 @@ export default async function AboutPage() {
         </Container>
       </FadeInSection>
 
-      {/* 目指しているものについて */}
+      {/* 目指している姿について */}
       <FadeInSection>
         <Container className="flex flex-col gap-4 pb-16">
-          <h2 className="font-display text-xl font-semibold">目指しているものについて</h2>
+          <h2 className="font-display text-xl font-semibold">目指している姿について</h2>
           <p className="text-sm leading-relaxed text-muted sm:text-base">
-            現時点でNode.jsやGoを使った独自APIの開発実績はまだありません。WORK
-            PLUSで扱ったSupabase（認証・DB・RLS）も、ゼロからサーバーを構築したわけではなく、マネージドサービスの機能を組み合わせた実装です。ただ、目指しているのは「フルスタックエンジニアになる」ことそのものより、扱える領域を少しずつ増やしていくことです。結果としてそう呼べる状態に近づけたら理想ですが、今の目的地としてはそちらではありません。開発の多くはAIを積極的に活用していて、コードを書く作業自体は自分一人だけの力ではありません。ただ、最終的な設計判断・なぜそう作ったか・出てきたコードが正しいかどうかの判断は、自分の責任として持ち続けるようにしています。AIを使った開発は今後さらに当たり前になっていくと考えています。実装の多くをAIに任せられるようになる分、人間の役割は、企画やヒアリング、設計といった上流工程や、AIも含めたチーム全体をどう動かすかというマネジメントの部分に、より重心が移っていくはずです。そこに時間を使える人になりたい、というのが今の自分の考えです。まだそのレベルにあるわけではないので、今は扱える領域を広げながら、自分の理解が追いついていない部分をAIを使ったアウトプット学習で埋めている段階です。
+            私が目指しているのは、特定の技術だけに限定せず、扱える領域を少しずつ広げていくことです。直近の開発でもSupabaseなどのマネージドサービスを積極的に取り入れ、目の前の課題解決に必要な手段を柔軟に選択・実装することを大切にしてきました。
+          </p>
+          <p className="text-sm leading-relaxed text-muted sm:text-base">
+            実装の多くをAIに任せられる時代だからこそ、エンジニアの価値は「何を作るか」「なぜそう作るか」を判断する設計力や、企画・ヒアリングといった上流工程へ移っていくと考えています。現在はAIを活用したアウトプット学習で自身の技術理解を深めつつ、将来的にそうした上流工程で目的を見据えた確かな判断を発揮できるエンジニアを目指しています。
           </p>
         </Container>
       </FadeInSection>
@@ -135,10 +156,13 @@ export default async function AboutPage() {
           <h2 className="font-display text-xl font-semibold">生成AI・Claudeを活用した開発について</h2>
           <p className="text-sm leading-relaxed text-muted sm:text-base">
             WORK
-            PLUSおよびこのポートフォリオサイトは、Claudeなどの生成AIを活用しながら開発しています。実装のほとんどはAIに任せており、不具合が起きたときの原因調査もまずAIに相談することがほとんどです。ただ、出てきた原因や対処方針が本当に正しいか、実際にどう直すかの最終判断は自分で行うようにしています（確認者候補が0人になり400エラーになった件なども、そうやって判断してきました）。「全部自分でゼロから書いていないのに実績と言えるのか」という迷いは自然なものですが、任せるところと自分で判断するところを分けて開発を進めること自体が、今のうちに身につけようとしているスキルだと思っています。
+            PLUSやこのポートフォリオサイトの開発では、Claudeなどの生成AIを積極的に活用しています。コードの実装やトラブル時の原因調査など、作業の多くをAIで効率化する一方で、提示された解決策が本当に正しいかどうかの検証や、最終的な修正判断はすべて自分自身で行うようにしています。
           </p>
           <p className="text-sm leading-relaxed text-muted sm:text-base">
-            現在の職場でも生成AIを使った開発フローを取り入れていますが、AIに任せきりにせず「なぜそのコードで動くのか」を自分の理解として積み上げていくことを、開発者として大切にしたいポイントだと考えています。生成AIをツールとして使いこなしながら、設計・意思決定・最終的な判断を自分の頭で行えることこそ、これからのエンジニアに求められる力だと思っています。
+            単にゼロからコードを書くことだけにこだわるのではなく、「AIに任せる部分」と「人間が責任を持って判断する部分」をしっかり分けて開発を進めること自体が、今の時代に求められるスキルだと考えています。
+          </p>
+          <p className="text-sm leading-relaxed text-muted sm:text-base">
+            実際の職場でもAIを使った開発フローを取り入れていますが、AIに任せきりにせず「なぜそのコードで動くのか」を自分の知識として落とし込みながら、設計や最終決定の責任を持つことを意識しています。
           </p>
         </Container>
       </FadeInSection>

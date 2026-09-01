@@ -151,6 +151,26 @@ button:disabled {
   animation: logo-flip 0.9s ease;
 }
 
+/* 隠しコマンドのメッセージが、Fの真下から吹き出しのようにポップインする演出 */
+@keyframes bubble-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.85) translateY(-4px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.03) translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-bubble-pop {
+  animation: bubble-pop 0.35s ease-out;
+}
+
 /* クリーム系マットな配色に、ごく薄いグレイン（ノイズ）テクスチャを重ねる。
    画面全体を覆う操作不可のレイヤーとして、blendモードで馴染ませている。 */
 body::after {
@@ -175,6 +195,10 @@ body::after {
 
 @media (prefers-reduced-motion: reduce) {
   .animate-logo-flip {
+    animation: none;
+  }
+
+  .animate-bubble-pop {
     animation: none;
   }
 }

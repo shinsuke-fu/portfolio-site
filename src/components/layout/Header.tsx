@@ -82,10 +82,13 @@ export function Header() {
           </Link>
 
           {showMessage && (
+            // Fの真下から生えているように見せる吹き出し。before擬似要素で作った小さな正方形を
+            // 45度回転させ、上辺と左辺だけに枠線を付けることで「しっぽ」に見せている
+            // （下半分は本体と同じ背景色のボックス内に隠れるので、枠線を付けない）。
             <div
               role="status"
               aria-live="polite"
-              className="absolute left-0 top-full z-50 mt-3 w-64 rounded-md border border-border bg-surface p-4 shadow-lg"
+              className="animate-bubble-pop absolute right-0 top-full z-50 mt-4 w-64 rounded-md border border-border bg-surface p-4 shadow-lg before:absolute before:-top-2 before:right-5 before:h-4 before:w-4 before:rotate-45 before:border-l before:border-t before:border-border before:bg-surface before:content-['']"
             >
               <p className="text-xs leading-relaxed text-muted">
                 🐻 熊本県出身の福岡です。隠しコマンド、見つけてくれてありがとうございます。
