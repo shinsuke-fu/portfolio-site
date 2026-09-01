@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { FadeInSection } from "@/components/motion/FadeInSection";
@@ -84,12 +85,28 @@ export default async function ProjectDetailPage(props: PageProps<"/projects/[id]
         </Container>
       </FadeInSection>
 
-      {/* Main Visual: 実際のデモ画像/GIFが用意でき次第、next/imageに差し替える */}
+      {/* Main Visual: アプリの操作画面（静止画/GIF）。demoImageが未設定の作品は準備中表示のまま */}
       <FadeInSection>
         <Container className="pb-16">
-          <div className="flex h-64 items-center justify-center rounded bg-thumbnail-bg text-xs text-thumbnail-fg sm:h-96">
-            デモ画像 / GIF（準備中）
-          </div>
+          {project.demoImage ? (
+            // 固定の高さ（h-64/h-96）だと実際のGIF/画像の比率と合わず、object-containで
+            // 左右に余白が出てしまうため、枠の比率をデモ素材の実際の比率（約2:1）に合わせている。
+            // 幅に応じて高さが自動で決まるので、ブレークポイントごとの高さ指定も不要になる。
+            <div className="relative aspect-[2/1] w-full overflow-hidden rounded border border-border bg-thumbnail-bg">
+              <Image
+                src={project.demoImage}
+                alt={`${project.title} の操作画面`}
+                fill
+                // GIFはnext/imageの最適化を通すとアニメーションが失われるため、素の画像として配信する
+                unoptimized
+                className="object-contain"
+              />
+            </div>
+          ) : (
+            <div className="flex h-64 items-center justify-center rounded bg-thumbnail-bg text-xs text-thumbnail-fg sm:h-96">
+              デモ画像 / GIF（準備中）
+            </div>
+          )}
         </Container>
       </FadeInSection>
 

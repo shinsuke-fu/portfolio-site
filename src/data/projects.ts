@@ -9,6 +9,7 @@ export const projectsData: Project[] = [
       "React 19 / TypeScriptで構築し、Supabase（PostgreSQL + Auth + RLS）をバックエンドに採用。複数ユーザーでのログイン・タスク共有、カンバン形式の承認フロー（申請／承認／差し戻し）、ダッシュボードでの進捗可視化までを実装。",
     featured: true,
     thumbnail: "/images/projects/work-plus-thumb.png",
+    demoImage: "/images/projects/work-plus-demo.gif",
     demoUrl: "https://work-plus-eosin.vercel.app/",
     githubUrl: "https://github.com/（実際のユーザー名に置き換える）/work-plus",
     technologies: [
@@ -20,6 +21,8 @@ export const projectsData: Project[] = [
       { name: "PostgreSQL", category: "database" },
       { name: "Vercel", category: "infrastructure" },
     ],
+    architectureDiagram: "/images/projects/work-plus-architecture.png",
+    architectureDiagramMobile: "/images/projects/work-plus-architecture-mobile.png",
     architectureNotes: [
       "ログイン後に使うダッシュボードアプリでSEO（検索エンジンへのインデックス）は重要でない一方、画面遷移の少ない操作性を重視したかったため、SPA構成のVite + React + TypeScriptを採用した。",
       "バックエンドにはSupabase（PostgreSQL + Auth + RLS）を採用。認証・DB・ストレージがセットになっており、認証まわり（パスワードのハッシュ化やセッション管理など）を自作せずに済むため、フロントエンドの作り込みに時間を使えると判断した。",

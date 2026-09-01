@@ -1,6 +1,7 @@
 "use client";
 
 import type { MouseEvent, TouchEvent } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import type { Project } from "@/types/project";
 import { TechBadge } from "./TechBadge";
@@ -65,10 +66,33 @@ export function ProjectCard({
   variant?: "featured" | "grid";
 }) {
   if (variant === "featured") {
+    // sm（640px）で横並びに切り替えると、iPad Air/mini等のタブレット縦持ち幅
+    // （744〜834px程度）ではサムネイル分の360pxを引いた残りのテキスト幅が300px台まで
+    // 狭くなり、ほぼ全行が折り返されて窮屈に見える問題があった。横並びへの切り替えを
+    // lg（1024px）まで遅らせ、タブレット縦持ち幅ではスマホと同じ「上下に積む」レイアウトの
+    // まま幅いっぱいにテキストを使えるようにしている（横並びになるのはノートPC相当の画面幅から）
     return (
-      <div className="flex flex-col gap-8 rounded-md border border-border bg-surface p-6 sm:flex-row sm:gap-12 sm:p-10">
-        <div className="flex h-48 items-center justify-center rounded bg-thumbnail-bg text-xs text-thumbnail-fg sm:h-60 sm:w-[360px] sm:flex-none">
-          サムネイル画像
+      <div className="flex flex-col gap-8 rounded-md border border-border bg-surface p-6 lg:flex-row lg:gap-12 lg:p-10">
+        {/* 枠の高さを固定値（h-48/h-60）にすると実際のスクショの比率（約16:9）とズレて
+            object-containで上下や左右に余白が出てしまうため、枠自体をaspect-videoに
+            している（幅からスクショの実比率に近い高さを自動計算し、余白をほぼ無くす）。
+            横並びになるlg以上では、デフォルトのalign-items:stretchで枠が右側の
+            テキスト量に応じて縦に引き伸ばされ、aspect-videoの高さより枠が高くなって
+            結局object-containで上下に余白が出てしまうため、引き伸ばしは止める必要がある。
+            ただしlg:self-start（上端に固定）だと、右側のテキストの方が長いときに
+            枠の下側だけに空きができてバランスが悪く見えるため、lg:self-centerで
+            枠を縦方向の中央に配置し、余った分の空きを上下に分散させている */}
+        <div className="relative aspect-video w-full overflow-hidden rounded bg-thumbnail-bg lg:w-[360px] lg:flex-none lg:self-center">
+          <Image
+            src={project.thumbnail}
+            alt={`${project.title} のサムネイル`}
+            fill
+            sizes="(min-width: 1024px) 360px, 100vw"
+            // object-coverだと表示枠とスクショの比率が合わないぶん左右・上下が切り抜かれて
+            // しまうため、全体が必ず収まるobject-containにしている（はみ出す分は
+            // bg-thumbnail-bgの余白として見える）
+            className="object-contain"
+          />
         </div>
         <div className="flex flex-col gap-4">
           <div>
@@ -108,8 +132,19 @@ export function ProjectCard({
       onTouchCancel={handleTiltTouchEnd}
       className="card-tilt flex flex-col overflow-hidden rounded-md border border-border bg-surface hover:border-accent"
     >
-      <div className="flex h-40 items-center justify-center bg-thumbnail-bg text-xs text-thumbnail-fg">
-        サムネイル画像
+      {/* h-40固定だとグリッド幅（カラム数で可変）に対して実際のスクショの比率（約16:9）と
+          ズレて左右に余白が出てしまうため、幅に応じて高さが決まるaspect-videoにしている */}
+      <div className="relative aspect-video w-full overflow-hidden bg-thumbnail-bg">
+        <Image
+          src={project.thumbnail}
+          alt={`${project.title} のサムネイル`}
+          fill
+          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+          // object-coverだと表示枠とスクショの比率が合わないぶん左右・上下が切り抜かれて
+          // しまうため、全体が必ず収まるobject-containにしている（はみ出す分は
+          // bg-thumbnail-bgの余白として見える）
+          className="object-contain"
+        />
       </div>
       <div className="flex flex-col gap-2 p-6">
         <h3 className="font-display text-lg font-semibold">{project.title}</h3>

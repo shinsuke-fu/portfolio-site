@@ -27,6 +27,7 @@ export interface Project {
   featured: boolean; // トップページでピックアップ表示するか
 
   thumbnail: string; // サムネイル画像パス
+  demoImage?: string; // 作品詳細ページのメインビジュアル用パス（静止画/GIF、アプリの操作画面）
   demoUrl?: string; // 公開URL（Vercelなど）
   githubUrl?: string; // GitHubリポジトリ（フロントエンドまたはメイン）
   backendGithubUrl?: string; // （将来用）バックエンドリポジトリを分ける場合
@@ -34,7 +35,11 @@ export interface Project {
   technologies: Technology[]; // 使用技術リスト
 
   // 深掘り・技術的アピール要素
-  architectureDiagram?: string; // アーキテクチャ構成図の画像URL
+  architectureDiagram?: string; // アーキテクチャ構成図の画像URL（sm以上、横並びレイアウト用）
+  architectureDiagramMobile?: string; // 構成図のスマホ幅（sm未満）専用版。横並び版をそのまま
+  // 縮小すると文字が判読できなくなるため、縦積みレイアウトで作り直した画像を別途持たせる。
+  // 未設定の場合はsm未満でもarchitectureDiagramをそのまま表示する
+
   architectureNotes?: string[]; // 構成・技術選定の理由（段落ごとに配列で持つ）
   aiUsageNote?: string; // 開発でAIをどう活用したか（「構成・技術選定の理由」セクションに表示）
   ownJudgmentNote?: string; // 技術選定・設計・修正判断のうち、自分で行ったこと（同上）
