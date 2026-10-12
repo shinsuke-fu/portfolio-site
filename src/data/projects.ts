@@ -32,7 +32,7 @@ export const projectsData: Project[] = [
     aiUsageNote:
       "コンポーネント設計やSupabaseとの連携部分など、実装の中心はClaudeと一緒に進めた。エラー発生時の原因調査も、まずAIに相談するところから着手している。",
     ownJudgmentNote:
-      "技術構成そのものの選定（Vite・React・TypeScript、Supabase・RLSを使うかどうか）や、状態管理をApp.tsxに一元化する設計方針の決定、そして実際に出た不具合（確認者0人時の400エラー）で提示された修正案が正しいかどうかの検証は、自分で行った。",
+      "技術構成そのものの選定（Vite・React・TypeScript、Supabase・RLSを使うかどうか）や、状態管理をApp.tsxに一元化する設計方針の決定は自分で行った。実際に出た不具合（確認者0人時の400エラー）はAIに原因調査・修正案の提示を依頼し、適用後にエラーが解消したことは自分で動作確認している。",
     challenges: [
       {
         title: "状態管理の一元化（Single Source of Truth）",
@@ -46,7 +46,7 @@ export const projectsData: Project[] = [
         problem:
           "ユーザーが自分1人しかいない状態でタスクを作成すると400エラーが発生。確認者候補が0人になり reviewerId が空文字列のまま送信され、uuid型の列に対して不正な値になっていた。",
         solution:
-          "`?? null`（undefined/nullのみ変換）を`|| null`（空文字列も含めて変換）に修正。原因を切り分けてピンポイントで対処した。",
+          "`?? null`（undefined/nullのみ変換）を`|| null`（空文字列も含めて変換）に修正。原因調査・修正案の提示はAIに依頼し、適用後に確認者0人でもエラーが出なくなることを自分で動作確認した。",
       },
     ],
     createdAt: "2026-08",
