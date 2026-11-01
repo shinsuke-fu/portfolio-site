@@ -11,7 +11,7 @@ export const projectsData: Project[] = [
     thumbnail: "/images/projects/work-plus-thumb.png",
     demoImage: "/images/projects/work-plus-demo.gif",
     demoUrl: "https://work-plus-eosin.vercel.app/",
-    githubUrl: "https://github.com/（実際のユーザー名に置き換える）/work-plus",
+    githubUrl: "https://github.com/shinsuke-fu/task-dashboard",
     technologies: [
       { name: "React", category: "frontend" },
       { name: "TypeScript", category: "frontend" },

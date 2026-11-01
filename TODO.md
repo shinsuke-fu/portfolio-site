@@ -9,13 +9,6 @@
 - [ ] **`siteConfig.siteUrl`を実際のVercel URLに更新する**（`src/lib/site-config.ts`）
       デプロイが完了して実際のURLが発行されたので、まだプレースホルダーのままのこの値を
       書き換えてpushする。OGP画像・メタデータの絶対URL解決に使われている（デプロイ手順.md 5章参照）。
-- [ ] `siteConfig`の`githubUrl`・`xUrl`・`email`を実際の値に更新する（`src/lib/site-config.ts`）
-      現在プレースホルダーのままで、ヘッダー・フッター・Contactページのリンクに反映される。
-
-## 作品（WORK PLUS）関連
-
-- [ ] WORK PLUSの実際のGitHubリポジトリURLを設定する（`src/data/projects.ts`の`githubUrl`）
-      `demoUrl`（公開URL）はすでに実際の値が入っている。
 
 ## サイト戦略まわり（検討中・方向性未確定）
 
@@ -131,3 +124,14 @@
       行っていない自己検証・自己診断を主張していた箇所を、実態（技術構成・設計方針の決定と
       動作確認は自分で行った／原因調査と修正案の提示はAIに依頼した）に合わせて修正
       （Step 32、設計書.md参照）
+- [x] Contactページ・Footerの連絡先表示を見直し。`email`を実際のアドレスに更新。GitHubは
+      問い合わせ先ではないためContactページから削除（Footer・TOPページには引き続き表示）。
+      Xは開設済みだが今はまだ公開しない方針のため、`siteConfig.xUrl`を未設定にしてFooter・
+      Contactページから非表示に（`xUrl`に値を設定すれば両方の表示が自動的に有効になる設計。
+      Step 33、設計書.md参照）
+- [x] `siteConfig.githubUrl`を実際のプロフィールURL（`https://github.com/shinsuke-fu`）に更新
+      （Step 34、設計書.md参照）
+- [x] WORK PLUSの実際のGitHubリポジトリURL（`https://github.com/shinsuke-fu/task-dashboard`）を
+      `src/data/projects.ts`の`githubUrl`に設定（Step 35、設計書.md参照）
+- [x] TOPページのヒーロータイトル・本文を、「自分（個人の肩書き）」を主語にした文章から、
+      「このサイト自体がどういう場所か」を主語にした文章に変更（Step 36、設計書.md参照）

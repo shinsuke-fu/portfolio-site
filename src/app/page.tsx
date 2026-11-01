@@ -42,10 +42,10 @@ export default async function Home() {
             Frontend Developer
           </p>
           <h1 className="max-w-3xl font-display text-3xl font-semibold leading-tight sm:text-5xl">
-            つくりながら学び、拡張し続けるエンジニア。
+            つくりながら学び、拡張し続ける場所。
           </h1>
           <p className="max-w-xl text-sm leading-relaxed text-muted sm:text-base">
-            フロントエンド開発を軸に、AI駆動開発で扱える領域を少しずつ広げています。実装の多くはAIの力を借りつつ、「何を作るか」「なぜそう作るか」を考え、最終的な判断の責任を持つところは、自分の役割として持ち続けたいと思っています。
+            フロントエンド開発を軸に、AI駆動開発で扱える領域を少しずつ広げていく場所です。実装の多くはAIの力を借りながらも、「何を作るか」「なぜそう作るか」を考え、最終的な判断の責任を持つというプロセスを積み重ねながら、技術的な現在地と成長の過程を記録していく場所にしたいと思っています。
           </p>
           <div className="mt-1 flex flex-col gap-3 sm:flex-row">
             <Link
