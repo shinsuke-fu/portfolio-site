@@ -23,33 +23,29 @@ export default function ContactPage() {
           <div className="flex flex-col gap-3 rounded-md border border-border bg-surface p-6">
             <p className="text-xs font-semibold uppercase tracking-wide text-muted">準備中</p>
             <p className="text-sm leading-relaxed text-muted sm:text-base">
-              お問い合わせフォームは今後追加予定です。それまでは、下記のGitHub・X・メールから直接ご連絡ください。
+              お問い合わせフォームは今後追加予定です。それまでは、下記のメールから直接ご連絡ください。
             </p>
           </div>
 
           <div className="flex flex-wrap gap-4">
-            <a
-              href={siteConfig.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded border border-foreground px-6 py-2.5 text-xs font-semibold"
-            >
-              GitHub
-            </a>
-            <a
-              href={siteConfig.xUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded border border-foreground px-6 py-2.5 text-xs font-semibold"
-            >
-              X
-            </a>
             <a
               href={`mailto:${siteConfig.email}`}
               className="rounded border border-foreground px-6 py-2.5 text-xs font-semibold"
             >
               Mail
             </a>
+            {/* GitHubは問い合わせ先ではないため、ここには出さない（本人の判断）。
+                Xは開設済みだが今はまだ非公開方針のため、siteConfig.xUrlが未設定の間は表示しない */}
+            {siteConfig.xUrl && (
+              <a
+                href={siteConfig.xUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded border border-foreground px-6 py-2.5 text-xs font-semibold"
+              >
+                X
+              </a>
+            )}
           </div>
 
           <p className="max-w-xl text-sm leading-relaxed text-muted sm:text-base">
