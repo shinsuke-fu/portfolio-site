@@ -49,7 +49,7 @@ export default function ContactPage() {
           </div>
 
           <p className="max-w-xl text-sm leading-relaxed text-muted sm:text-base">
-            将来的には地元・熊本を拠点に生活できることを目標にしています。熊本での勤務はもちろん、東京の会社でのフルリモートや、近郊都市への部分出社+リモートなど、働き方は柔軟に検討したいと考えています。
+            将来的には地元・熊本を拠点に活動したいと考えています。熊本での勤務はもちろん、東京の会社でのフルリモートや、近郊都市への部分出社+リモートなど、働き方は柔軟に検討したいと考えています。
           </p>
         </Container>
       </FadeInSection>
